@@ -107,9 +107,20 @@ We would then get coverage estimates for each unitig using the MP algorithm
 sketched above.
 Counting could be parallelized over libraries, and then
 the MP algorithm could be parallelized over both libraries and connected
-components in the cdBG (finding connected components is probably hard).
+components in the cdBG (finding connected components is
+probably hard[^see e.g. [@Flick2015] and papers citing it]).
 The result would be big tables of exact unitig depths for each sample
 without any mapping step and where we've incorporated
 connectivity information directly.
 We could then do NMF directly on these coverages and try to bin
 genomes, for instance.
+I _think_ one benefit would be that we could treat coverage estimates as
+equivilantly precise, because everything would have similar numbers of kmers
+informing it?
+
+Not having to do any mapping to get coverage is goal enough on its own,
+but is there a way to leverage this idea into longer contigs?
+I think I've got to use some of the statistical path-finding approaches
+(unzipping) that I had been looking at last year...
+But maybe we can "save" the coverage information in the unzipping
+process, so we unzip sub-paths _and_ give them coverages at the same time?

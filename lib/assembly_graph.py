@@ -32,6 +32,7 @@ def build_full_from_seed_graph(downstream_):
             rc_kmer_downstream = reverse_complement(kmer_downstream)
             downstream[rc_kmer_downstream].append(rc_kmer)
             upstream[rc_kmer].append(rc_kmer_downstream)
+    assert mapping_all_upstream(upstream)
     return downstream, upstream
 
 
